@@ -1,0 +1,45 @@
+.myPosts {
+	margin: 30px 0;
+}
+
+.title {
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+
+.textareaButtonBox {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.textarea {
+	margin-bottom: 20px;
+}
+
+.textarea textarea {
+	width: 90%;
+	height: 100px;
+	resize: none;
+	border-radius: 10px;
+	padding: 5px 10px;
+	font-size: 18px;
+}
+
+.button {
+	text-align: right;
+	margin-right: 45px;
+}
+
+.button button{
+	background-color: teal;
+	border: none;
+	color: #fff;
+	padding: 5px 15px;
+	font-size: 20px;
+	border-radius: 4px;
+	transition: all 0.5s ease;
+}
+
+.button button:hover {
+	background-color: tomato;
+}
