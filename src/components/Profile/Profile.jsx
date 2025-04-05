@@ -5,15 +5,15 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
 	return (
-		<div className={c.content}>
-			<div>
+		<>
+			<div className={c.profile}>
 				<img src={content_bg} alt='content-bg' />
 			</div>
 			<div>
 				ava + descr
 			</div>
 			<MyPosts />
-		</div>
+		</>
 	)
 }
 
