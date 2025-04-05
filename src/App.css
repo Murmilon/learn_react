@@ -15,38 +15,7 @@
 	color: #fff;
 }
 
-.header,
-.navbar,
-.content {
-	background-color: yellowgreen;
-	padding: 10px;
-	border-radius: 10px;
-}
 
-.header {
-	grid-area: header;
-}
 
-.navbar {
-	grid-area: navbar;
-	font-size: 24px;
-}
 
-.navbar__box {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	margin-top: 20px;
-	padding-bottom: 50px;
-}
-
-.content {
-	grid-area: content;
-}
-
-.content img {
-	width: 100%;
-	height: 200px;
-	border-radius: 5px;
-}
 
