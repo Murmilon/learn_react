@@ -14,7 +14,7 @@
 	padding-bottom: 50px;
 }
 
-.navbar__link.active {
+.active {
 	color: tomato;
 	text-decoration: underline;
 }
