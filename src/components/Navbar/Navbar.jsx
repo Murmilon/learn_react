@@ -6,27 +6,27 @@ const Navbar = () => {
 		<nav className={c.navbar}>
 			<ul className={c.navbar__box}>
 				<li className={c.navbar__item}>
-					<a className={`${c.navbar__link} ${c.active}`}>
+					<a href="/profile" className={`${c.navbar__link} ${c.active}`}>
 						Profile
 					</a>
 				</li>
 				<li className={c.navbar__item}>
-					<a className={c.navbar__link}>
-						Messages
+					<a href="/dialogs" className={c.navbar__link}>
+						Dialogs
 					</a>
 				</li>
 				<li className={c.navbar__item}>
-					<a className={c.navbar__link}>
+					<a href="/news" className={c.navbar__link}>
 						News
 					</a>
 				</li>
 				<li className={c.navbar__item}>
-					<a className={c.navbar__link}>
+					<a href="/music" className={c.navbar__link}>
 						Music
 					</a>
 				</li>
 				<li className={c.navbar__item}>
-					<a className={c.navbar__link}>
+					<a href="/settings" className={c.navbar__link}>
 						Settings
 					</a>
 				</li>
