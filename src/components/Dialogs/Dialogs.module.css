@@ -1,0 +1,29 @@
+.dialogs {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+	gap: 20px;
+	margin-top: 20px;
+}
+
+.dialogsItem {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	border-right: 2px solid teal;
+}
+
+.dialog {
+	margin-left: 10px;
+	font-size: 24px;
+}
+
+.messages {
+	font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.message {
+	
+}
