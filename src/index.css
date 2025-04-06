@@ -125,6 +125,7 @@ a {
 	vertical-align: baseline;
 	background: transparent;
 	text-decoration: none;
+	color: inherit;
 }
 
 /* change colours to suit your needs */
