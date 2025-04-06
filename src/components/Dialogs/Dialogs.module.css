@@ -2,19 +2,26 @@
 	display: grid;
 	grid-template-columns: 2fr 10fr;
 	gap: 20px;
-	margin-top: 20px;
+	margin: 20px 0 30px;
 }
 
 .dialogsItem {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 20px;
 	border-right: 2px solid teal;
 }
 
 .dialog {
 	margin-left: 10px;
 	font-size: 24px;
+	transition: all 0.3s ease;
+}
+
+.active {
+	color: tomato;
+	text-decoration: underline;
+	transition: all 0.3s ease;
 }
 
 .messages {

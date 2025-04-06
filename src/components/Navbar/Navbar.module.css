@@ -14,7 +14,13 @@
 	padding-bottom: 50px;
 }
 
+.navbar__link {
+	margin-left: 10px;
+	transition: all 0.3s ease;
+}
+
 .active {
 	color: tomato;
 	text-decoration: underline;
+	transition: all 0.3s ease;
 }
