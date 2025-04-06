@@ -8,51 +8,41 @@ const activeFriend = () => {
 	)
 }
 
+const DialogItem = (props) => {
+	const path = '/dialogs/' + props.id;
+
+	return (
+		<div className={c.dialog}>
+			<NavLink className={activeFriend()} to={path}>
+				{props.name}
+			</NavLink>
+		</div>
+	)
+}
+
+const Message = (props) => {
+	return (
+		<div className={c.message}>
+			{props.message}
+		</div>
+	)
+}
+
 const Dialogs = () => {
 	return (
 		<div className={c.dialogs}>
 			<div className={c.dialogsItem}>
-				<div className={c.dialog}>
-					<NavLink className={activeFriend()} to='/dialogs/1'>
-						Dmitriy
-					</NavLink>
-				</div>
-				<div className={c.dialog}>
-					<NavLink className={activeFriend()} to='/dialogs/2'>
-						Andrey
-					</NavLink>
-				</div>
-				<div className={c.dialog}>
-					<NavLink className={activeFriend()} to='/dialogs/3'>
-						Sveta
-					</NavLink>
-				</div>
-				<div className={c.dialog}>
-					<NavLink className={activeFriend()} to='/dialogs/4'>
-						Sasha
-					</NavLink>
-				</div>
-				<div className={c.dialog}>
-					<NavLink className={activeFriend()} to='/dialogs/5'>
-						Viktor
-					</NavLink>
-				</div>
-				<div className={c.dialog}>
-					<NavLink className={activeFriend()} to='/dialogs/6'>
-						Valeriy
-					</NavLink>
-				</div>
+				<DialogItem name='Dmitriy' id='1' />
+				<DialogItem name='Andrey' id='2' />
+				<DialogItem name='Sveta' id='3' />
+				<DialogItem name='Sasha' id='4' />
+				<DialogItem name='Viktor' id='5' />
+				<DialogItem name='Valeriy' id='6' />
 			</div>
 			<div className={c.messages}>
-				<div className={c.message}>
-					Hi
-				</div>
-				<div className={c.message}>
-					Hello
-				</div>
-				<div className={c.message}>
-					Yo
-				</div>
+				<Message message='Hi' />
+				<Message message='Hello' />
+				<Message message='Yo' />
 			</div>
 		</div>
 	)
