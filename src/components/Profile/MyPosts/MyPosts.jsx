@@ -2,10 +2,16 @@ import React from "react";
 import c from './MyPosts.module.css'
 import Post from "./Post/Post";
 
-let postData = [
+let postsData = [
 	{ id: 1, message: 'Hi', likesCount: '15', },
 	{ id: 2, message: 'Hello', likesCount: '20', },
 ]
+
+let postsElements = postsData.map((post) => {
+	return (
+		<Post message={post.message} likesCount={post.likesCount} id={post.id} />
+	)
+})
 
 const MyPosts = () => {
 	return (
@@ -21,8 +27,7 @@ const MyPosts = () => {
 					<button>Add Post</button>
 				</div>
 			</div>
-			<Post message={postData[0].message} likesCount={postData[0].likesCount} />
-			<Post message='Hello' likesCount='20' />
+			{postsElements}
 		</div>
 	)
 }
