@@ -2,18 +2,13 @@ import React from "react";
 import c from './MyPosts.module.css'
 import Post from "./Post/Post";
 
-let postsData = [
-	{ id: 1, message: 'Hi', likesCount: '15', },
-	{ id: 2, message: 'Hello', likesCount: '20', },
-]
+const MyPosts = (props) => {
+	let postsElements = props.profilePostsData.map((post) => {
+		return (
+			<Post message={post.message} likesCount={post.likesCount} id={post.id} />
+		)
+	})
 
-let postsElements = postsData.map((post) => {
-	return (
-		<Post message={post.message} likesCount={post.likesCount} id={post.id} />
-	)
-})
-
-const MyPosts = () => {
 	return (
 		<div className={c.myPosts}>
 			<h3 className={c.title}>
