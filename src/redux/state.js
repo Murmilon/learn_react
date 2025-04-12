@@ -30,4 +30,23 @@ let state = {
 	],
 }
 
+export let addPost = (postMessage) => {
+	let newPost = {
+		id: 3,
+		message: postMessage,
+		likesCount: 0,
+	}
+
+	state.profilePage.profilePostsData.push(newPost);
+}
+
+export let addMessage = (textMessage) => {
+	let newMessage = {
+		id: 4,
+		message: textMessage,
+	}
+
+	state.dialogsPage.dialogsMessagesData.push(newMessage);
+}
+
 export default state;
