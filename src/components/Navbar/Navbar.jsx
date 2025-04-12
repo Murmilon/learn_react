@@ -1,6 +1,7 @@
 import React from "react";
 import c from './Navbar.module.css'
 import { NavLink } from "react-router-dom";
+import Sidebar from "./Sidebar/Sidebar";
 
 const activeLink = () => {
 	return (
@@ -8,7 +9,13 @@ const activeLink = () => {
 	)
 }
 
-const Navbar = () => {
+const Navbar = (props) => {
+	let sidebarElement = props.state.sidebar.map((sidebar) => {
+		return (
+			<Sidebar name={sidebar.name} id={sidebar.id} />
+		)
+	})
+
 	return (
 		<nav className={c.navbar}>
 			<ul className={c.navbar__box}>
@@ -38,6 +45,10 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 			</ul>
+			<h3 className={c.title}>Friends</h3>
+			<div className={c.sidebar}>
+				{sidebarElement}
+			</div>
 		</nav>
 	)
 }

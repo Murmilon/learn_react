@@ -1,11 +1,11 @@
 .container {
-	max-width: 1220px;
+	max-width: 1420px;
 	margin: 0 auto;
 }
 
 .app-wrapper {
 	display: grid;
-	grid-template-columns: 2fr 10fr;
+	grid-template-columns: 2.5fr 10fr;
 	grid-template-rows: 80px 1fr;
 	grid-template-areas: 
 	'header header'
