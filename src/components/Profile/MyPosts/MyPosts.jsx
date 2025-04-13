@@ -12,9 +12,12 @@ const MyPosts = (props) => {
 	let newPostElement = React.createRef();
 
 	let addPost = () => {
+		props.addPost();
+	}
+
+	let fluxSymbolCycleInPost = () => {
 		let text = newPostElement.current.value;
-		props.addPost(text);
-		newPostElement.current.value = '';
+		props.fluxSymbolCycleInPost(text)
 	}
 
 	return (
@@ -24,7 +27,12 @@ const MyPosts = (props) => {
 			</h3>
 			<div className={c.textareaButtonBox}>
 				<div className={c.textarea}>
-					<textarea ref={newPostElement} name="text"></textarea>
+					<textarea
+						onChange={fluxSymbolCycleInPost}
+						ref={newPostElement}
+						name="text"
+						value={props.newPostText}
+					/>
 				</div>
 				<div className={c.button}>
 					<button onClick={addPost}>Add Post</button>

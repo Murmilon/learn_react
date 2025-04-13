@@ -19,12 +19,14 @@ function App(props) {
 					<div className='app-wrapper-content'>
 						<Routes>
 							<Route path='/profile/*' element={<Profile
-								state={props.state.profilePage}
+								profilePage={props.state.profilePage}
 								addPost={props.addPost}
+								fluxSymbolCycleInPost={props.fluxSymbolCycleInPost}
 							/>} />
 							<Route path='/dialogs/*' element={<Dialogs
 								state={props.state.dialogsPage}
 								addMessage={props.addMessage}
+								fluxSymbolCycleInMessage={props.fluxSymbolCycleInMessage}
 							/>} />
 							<Route path='/news/*' element={<News />} />
 							<Route path='/music/*' element={<Music />} />

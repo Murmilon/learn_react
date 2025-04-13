@@ -20,9 +20,12 @@ const Dialogs = (props) => {
 	let newMessageElement = React.createRef();
 
 	let addMessage = () => {
+		props.addMessage();
+	}
+
+	let fluxSymbolCycleInMessage = () => {
 		let text = newMessageElement.current.value;
-		props.addMessage(text);
-		newMessageElement.current.value = '';
+		props.fluxSymbolCycleInMessage(text)
 	}
 
 	return (
@@ -34,7 +37,12 @@ const Dialogs = (props) => {
 				{messagesElements}
 				<div className={c.textareaAndButton}>
 					<div className={c.textarea}>
-						<textarea ref={newMessageElement} name="text"></textarea>
+						<textarea
+							onChange={fluxSymbolCycleInMessage}
+							ref={newMessageElement}
+							name="text"
+							value={props.state.newMessageText}
+						/>
 					</div>
 					<div className={c.button}>
 						<button onClick={addMessage}>Add Message</button>
