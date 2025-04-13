@@ -1,4 +1,6 @@
-import { rerenderEntireTree } from './../render'
+let rerenderEntireTree = () => {
+	console.log('State changed');
+} //* Эта функция мутирована с помощью функции subscribe. Теперь она служит наблюдателем для  перерисовки всего дерева, при изменении state. Это сделано для того, чтобы избежать циклической зависимости import/export между файлами state и index.
 
 let state = {
 	profilePage: {
@@ -36,7 +38,7 @@ let state = {
 	],
 }
 
-export let addPost = () => {
+export const addPost = () => {
 	let newPost = {
 		id: 3,
 		message: state.profilePage.newPostText,
@@ -48,12 +50,12 @@ export let addPost = () => {
 	rerenderEntireTree(state);
 }
 
-export let fluxSymbolCycleInPost = (newSymbol) => {
+export const fluxSymbolCycleInPost = (newSymbol) => {
 	state.profilePage.newPostText = newSymbol;
 	rerenderEntireTree(state);
 }
 
-export let addMessage = () => {
+export const addMessage = () => {
 	let newMessage = {
 		id: 4,
 		message: state.dialogsPage.newMessageText,
@@ -64,9 +66,13 @@ export let addMessage = () => {
 	rerenderEntireTree(state);
 }
 
-export let fluxSymbolCycleInMessage = (newSymbol) => {
+export const fluxSymbolCycleInMessage = (newSymbol) => {
 	state.dialogsPage.newMessageText = newSymbol;
 	rerenderEntireTree(state);
 }
+
+export let subscribe = (observer) => {
+	rerenderEntireTree = observer;
+} //* Эта функция мутирует функцию rerenderEntireTree, чтобы избежать циклической записимости import/export между файлами state и index. В качестве параметра observer она принимает настоящую функцияю rerenderEntireTree из index.js
 
 export default state;
