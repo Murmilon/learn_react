@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const FLUX_SYMBOL_CYCLE_IN_POST = 'FLUX-SYMBOL-CYCLE-IN-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const FLUX_SYMBOL_CYCLE_IN_MESSAGE = 'FLUX-SYMBOL-CYCLE-IN-MESSAGE';
+
 let store = {
 	_rerenderEntireTree() {
 		console.log('State changed');
@@ -49,7 +54,7 @@ let store = {
 
 	dispatch(action) {
 		switch (action.type) {
-			case 'ADD-POST':
+			case ADD_POST:
 				let newPost = {
 					id: 3,
 					message: this._state.profilePage.newPostText,
@@ -60,11 +65,11 @@ let store = {
 				this._state.profilePage.newPostText = '';
 				this._rerenderEntireTree(this._state);
 				break;
-			case 'FLUX-SYMBOL-CYCLE-IN-POST':
+			case FLUX_SYMBOL_CYCLE_IN_POST:
 				this._state.profilePage.newPostText = action.newSymbol;
 				this._rerenderEntireTree(this._state);
 				break;
-			case 'ADD-MESSAGE':
+			case ADD_MESSAGE:
 				let newMessage = {
 					id: 4,
 					message: this._state.dialogsPage.newMessageText,
@@ -74,7 +79,7 @@ let store = {
 				this._state.dialogsPage.newMessageText = '';
 				this._rerenderEntireTree(this._state);
 				break;
-			case 'FLUX-SYMBOL-CYCLE-IN-MESSAGE':
+			case FLUX_SYMBOL_CYCLE_IN_MESSAGE:
 				this._state.dialogsPage.newMessageText = action.newSymbol;
 				this._rerenderEntireTree(this._state);
 				break;
@@ -83,7 +88,19 @@ let store = {
 				break;
 		}
 	},
-
 }
+
+//*Функции, которые передаются в качестве параметра для функции dispatch
+
+export const addPostActionCreator = () => ({ type: ADD_POST, });
+
+export const fluxSymbolCycleInPostActionCreator = (text) =>
+	({ type: FLUX_SYMBOL_CYCLE_IN_POST, newSymbol: text, });
+
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE, });
+
+export const fluxSymbolCycleInMessageActionCreator = (text) => ({
+	type: FLUX_SYMBOL_CYCLE_IN_MESSAGE, newSymbol: text,
+});
 
 export default store;

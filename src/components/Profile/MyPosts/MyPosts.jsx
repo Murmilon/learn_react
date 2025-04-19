@@ -1,6 +1,7 @@
 import React from "react";
 import c from './MyPosts.module.css'
 import Post from "./Post/Post";
+import { addPostActionCreator, fluxSymbolCycleInPostActionCreator } from "../../../redux/state";
 
 const MyPosts = (props) => {
 	let postsElements = props.profilePostsData.map((post) => {
@@ -12,12 +13,12 @@ const MyPosts = (props) => {
 	let newPostElement = React.createRef();
 
 	let addPost = () => {
-		props.dispatch({ type: 'ADD-POST', })
+		props.dispatch(addPostActionCreator());
 	}
 
 	let fluxSymbolCycleInPost = () => {
 		let text = newPostElement.current.value;
-		props.dispatch({ type: 'FLUX-SYMBOL-CYCLE-IN-POST', newSymbol: text, })
+		props.dispatch(fluxSymbolCycleInPostActionCreator(text))
 	}
 
 	return (

@@ -2,6 +2,7 @@ import React from "react";
 import c from './Dialogs.module.css'
 import DialogItem from "./DialogsItem/DialogItem";
 import Message from "./Message/Message";
+import { addMessageActionCreator, fluxSymbolCycleInMessageActionCreator } from "../../redux/state";
 
 const Dialogs = (props) => {
 
@@ -20,12 +21,12 @@ const Dialogs = (props) => {
 	let newMessageElement = React.createRef();
 
 	let addMessage = () => {
-		props.dispatch({ type: 'ADD-MESSAGE', })
+		props.dispatch(addMessageActionCreator())
 	}
 
 	let fluxSymbolCycleInMessage = () => {
 		let text = newMessageElement.current.value;
-		props.dispatch({ type: 'FLUX-SYMBOL-CYCLE-IN-MESSAGE', newSymbol: text, })
+		props.dispatch(fluxSymbolCycleInMessageActionCreator(text))
 	}
 
 	return (
