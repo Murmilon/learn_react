@@ -1,12 +1,7 @@
 let store = {
-
 	_rerenderEntireTree() {
 		console.log('State changed');
 	}, //* Этoт метод мутирован с помощью метода subscribe. Теперь он служит наблюдателем для перерисовки всего дерева, при изменении state. Это сделано для того, чтобы избежать циклической зависимости import/export между файлами state и index.
-
-	getState() {
-		return this._state;
-	},
 
 	_state: {
 		profilePage: {
@@ -44,43 +39,51 @@ let store = {
 		],
 	},
 
-
-	addPost() {
-		let newPost = {
-			id: 3,
-			message: this._state.profilePage.newPostText,
-			likesCount: 0,
-		}
-
-		this._state.profilePage.profilePostsData.push(newPost);
-		this._state.profilePage.newPostText = '';
-		this._rerenderEntireTree(this._state);
-	},
-
-	fluxSymbolCycleInPost(newSymbol) {
-		this._state.profilePage.newPostText = newSymbol;
-		this._rerenderEntireTree(this._state);
-	},
-
-	addMessage() {
-		let newMessage = {
-			id: 4,
-			message: this._state.dialogsPage.newMessageText,
-		}
-
-		this._state.dialogsPage.dialogsMessagesData.push(newMessage);
-		this._state.dialogsPage.newMessageText = '';
-		this._rerenderEntireTree(this._state);
-	},
-
-	fluxSymbolCycleInMessage(newSymbol) {
-		this._state.dialogsPage.newMessageText = newSymbol;
-		this._rerenderEntireTree(this._state);
+	getState() {
+		return this._state;
 	},
 
 	subscribe(observer) {
 		this._rerenderEntireTree = observer;
 	}, //* Этот метод мутирует метод rerenderEntireTree, чтобы избежать циклической записимости import/export между файлами state и index. В качестве параметра observer он принимает настоящую функцияю rerenderEntireTree из index.js
+
+	dispatch(action) {
+		switch (action.type) {
+			case 'ADD-POST':
+				let newPost = {
+					id: 3,
+					message: this._state.profilePage.newPostText,
+					likesCount: 0,
+				}
+
+				this._state.profilePage.profilePostsData.push(newPost);
+				this._state.profilePage.newPostText = '';
+				this._rerenderEntireTree(this._state);
+				break;
+			case 'FLUX-SYMBOL-CYCLE-IN-POST':
+				this._state.profilePage.newPostText = action.newSymbol;
+				this._rerenderEntireTree(this._state);
+				break;
+			case 'ADD-MESSAGE':
+				let newMessage = {
+					id: 4,
+					message: this._state.dialogsPage.newMessageText,
+				}
+
+				this._state.dialogsPage.dialogsMessagesData.push(newMessage);
+				this._state.dialogsPage.newMessageText = '';
+				this._rerenderEntireTree(this._state);
+				break;
+			case 'FLUX-SYMBOL-CYCLE-IN-MESSAGE':
+				this._state.dialogsPage.newMessageText = action.newSymbol;
+				this._rerenderEntireTree(this._state);
+				break;
+			default:
+				this._rerenderEntireTree(this._state);
+				break;
+		}
+	},
+
 }
 
 export default store;

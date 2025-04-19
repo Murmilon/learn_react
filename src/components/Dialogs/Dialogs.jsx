@@ -20,12 +20,12 @@ const Dialogs = (props) => {
 	let newMessageElement = React.createRef();
 
 	let addMessage = () => {
-		props.addMessage();
+		props.dispatch({ type: 'ADD-MESSAGE', })
 	}
 
 	let fluxSymbolCycleInMessage = () => {
 		let text = newMessageElement.current.value;
-		props.fluxSymbolCycleInMessage(text)
+		props.dispatch({ type: 'FLUX-SYMBOL-CYCLE-IN-MESSAGE', newSymbol: text, })
 	}
 
 	return (

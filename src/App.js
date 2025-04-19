@@ -20,13 +20,11 @@ function App(props) {
 						<Routes>
 							<Route path='/profile/*' element={<Profile
 								profilePage={props.state.profilePage}
-								addPost={props.addPost}
-								fluxSymbolCycleInPost={props.fluxSymbolCycleInPost}
+								dispatch={props.dispatch}
 							/>} />
 							<Route path='/dialogs/*' element={<Dialogs
 								state={props.state.dialogsPage}
-								addMessage={props.addMessage}
-								fluxSymbolCycleInMessage={props.fluxSymbolCycleInMessage}
+								dispatch={props.dispatch}
 							/>} />
 							<Route path='/news/*' element={<News />} />
 							<Route path='/music/*' element={<Music />} />

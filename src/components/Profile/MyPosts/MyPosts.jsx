@@ -12,12 +12,12 @@ const MyPosts = (props) => {
 	let newPostElement = React.createRef();
 
 	let addPost = () => {
-		props.addPost();
+		props.dispatch({ type: 'ADD-POST', })
 	}
 
 	let fluxSymbolCycleInPost = () => {
 		let text = newPostElement.current.value;
-		props.fluxSymbolCycleInPost(text)
+		props.dispatch({ type: 'FLUX-SYMBOL-CYCLE-IN-POST', newSymbol: text, })
 	}
 
 	return (

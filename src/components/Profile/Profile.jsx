@@ -11,8 +11,7 @@ const Profile = (props) => {
 			<MyPosts
 				profilePostsData={props.profilePage.profilePostsData}
 				newPostText={props.profilePage.newPostText}
-				addPost={props.addPost}
-				fluxSymbolCycleInPost={props.fluxSymbolCycleInPost}
+				dispatch={props.dispatch}
 			/>
 		</>
 	)
