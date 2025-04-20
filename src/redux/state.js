@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const FLUX_SYMBOL_CYCLE_IN_POST = 'FLUX-SYMBOL-CYCLE-IN-POST';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const FLUX_SYMBOL_CYCLE_IN_MESSAGE = 'FLUX-SYMBOL-CYCLE-IN-MESSAGE';
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let store = {
 	_rerenderEntireTree() {
@@ -53,54 +52,12 @@ let store = {
 	}, //* Этот метод мутирует метод rerenderEntireTree, чтобы избежать циклической записимости import/export между файлами state и index. В качестве параметра observer он принимает настоящую функцияю rerenderEntireTree из index.js
 
 	dispatch(action) {
-		switch (action.type) {
-			case ADD_POST:
-				let newPost = {
-					id: 3,
-					message: this._state.profilePage.newPostText,
-					likesCount: 0,
-				}
+		this._state.profilePage = profileReducer(this._state.profilePage, action);
+		this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+		this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-				this._state.profilePage.profilePostsData.push(newPost);
-				this._state.profilePage.newPostText = '';
-				this._rerenderEntireTree(this._state);
-				break;
-			case FLUX_SYMBOL_CYCLE_IN_POST:
-				this._state.profilePage.newPostText = action.newSymbol;
-				this._rerenderEntireTree(this._state);
-				break;
-			case ADD_MESSAGE:
-				let newMessage = {
-					id: 4,
-					message: this._state.dialogsPage.newMessageText,
-				}
-
-				this._state.dialogsPage.dialogsMessagesData.push(newMessage);
-				this._state.dialogsPage.newMessageText = '';
-				this._rerenderEntireTree(this._state);
-				break;
-			case FLUX_SYMBOL_CYCLE_IN_MESSAGE:
-				this._state.dialogsPage.newMessageText = action.newSymbol;
-				this._rerenderEntireTree(this._state);
-				break;
-			default:
-				this._rerenderEntireTree(this._state);
-				break;
-		}
+		this._rerenderEntireTree(this._state);
 	},
 }
-
-//*Функции, которые передаются в качестве параметра для функции dispatch
-
-export const addPostActionCreator = () => ({ type: ADD_POST, });
-
-export const fluxSymbolCycleInPostActionCreator = (text) =>
-	({ type: FLUX_SYMBOL_CYCLE_IN_POST, newSymbol: text, });
-
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE, });
-
-export const fluxSymbolCycleInMessageActionCreator = (text) => ({
-	type: FLUX_SYMBOL_CYCLE_IN_MESSAGE, newSymbol: text,
-});
 
 export default store;

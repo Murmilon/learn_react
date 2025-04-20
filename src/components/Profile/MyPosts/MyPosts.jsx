@@ -1,7 +1,7 @@
 import React from "react";
 import c from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { addPostActionCreator, fluxSymbolCycleInPostActionCreator } from "../../../redux/state";
+import { addPostActionCreator, fluxSymbolCycleInPostActionCreator } from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
 	let postsElements = props.profilePostsData.map((post) => {
