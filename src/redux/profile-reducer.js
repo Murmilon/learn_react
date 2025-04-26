@@ -1,7 +1,16 @@
 const ADD_POST = 'ADD-POST';
 const FLUX_SYMBOL_CYCLE_IN_POST = 'FLUX-SYMBOL-CYCLE-IN-POST';
 
-const profileReducer = (state, action) => {
+let initialState = {
+	profilePostsData: [
+		{ id: 1, message: 'Hi', likesCount: '15', },
+		{ id: 2, message: 'Hello', likesCount: '20', },
+	],
+
+	newPostText: '',
+};
+
+const profileReducer = (state = initialState, action) => {
 
 	switch (action.type) {
 		case ADD_POST:
