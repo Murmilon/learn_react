@@ -1,10 +1,9 @@
 import React from "react";
 import c from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { addPostActionCreator, fluxSymbolCycleInPostActionCreator } from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
-	let postsElements = props.profilePostsData.map((post) => {
+	let postsElements = props.profilePage.profilePostsData.map((post) => {
 		return (
 			<Post message={post.message} likesCount={post.likesCount} id={post.id} />
 		)
@@ -13,12 +12,12 @@ const MyPosts = (props) => {
 	let newPostElement = React.createRef();
 
 	let addPost = () => {
-		props.dispatch(addPostActionCreator());
+		props.addPost()
 	}
 
 	let fluxSymbolCycleInPost = () => {
 		let text = newPostElement.current.value;
-		props.dispatch(fluxSymbolCycleInPostActionCreator(text))
+		props.fluxSymbolCycleInPostActionCreator(text);
 	}
 
 	return (
@@ -32,7 +31,7 @@ const MyPosts = (props) => {
 						onChange={fluxSymbolCycleInPost}
 						ref={newPostElement}
 						name="text"
-						value={props.newPostText}
+						value={props.profilePage.newPostText}
 					/>
 				</div>
 				<div className={c.button}>

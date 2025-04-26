@@ -2,17 +2,16 @@ import React from "react";
 import c from './Dialogs.module.css'
 import DialogItem from "./DialogsItem/DialogItem";
 import Message from "./Message/Message";
-import { addMessageActionCreator, fluxSymbolCycleInMessageActionCreator } from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
 
-	let dialogsElements = props.state.dialogsUsersData.map((dialog) => {
+	let dialogsElements = props.dialogsPage.dialogsUsersData.map((dialog) => {
 		return (
 			<DialogItem name={dialog.name} id={dialog.id} />
 		)
 	})
 
-	let messagesElements = props.state.dialogsMessagesData.map((message) => {
+	let messagesElements = props.dialogsPage.dialogsMessagesData.map((message) => {
 		return (
 			<Message message={message.message} id={message.id} />
 		)
@@ -21,12 +20,12 @@ const Dialogs = (props) => {
 	let newMessageElement = React.createRef();
 
 	let addMessage = () => {
-		props.dispatch(addMessageActionCreator())
+		props.addMessageActionCreator();
 	}
 
 	let fluxSymbolCycleInMessage = () => {
 		let text = newMessageElement.current.value;
-		props.dispatch(fluxSymbolCycleInMessageActionCreator(text))
+		props.fluxSymbolCycleInMessageActionCreator(text);
 	}
 
 	return (
@@ -42,7 +41,7 @@ const Dialogs = (props) => {
 							onChange={fluxSymbolCycleInMessage}
 							ref={newMessageElement}
 							name="text"
-							value={props.state.newMessageText}
+							value={props.dialogsPage.newMessageText}
 						/>
 					</div>
 					<div className={c.button}>
