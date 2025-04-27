@@ -5,13 +5,13 @@ import Message from "./Message/Message";
 
 const Dialogs = (props) => {
 
-	let dialogsElements = props.dialogsPage.dialogsUsersData.map((dialog) => {
+	let dialogsElements = props.dialogsUsersData.map((dialog) => {
 		return (
 			<DialogItem name={dialog.name} id={dialog.id} />
 		)
 	})
 
-	let messagesElements = props.dialogsPage.dialogsMessagesData.map((message) => {
+	let messagesElements = props.dialogsMessagesData.map((message) => {
 		return (
 			<Message message={message.message} id={message.id} />
 		)
@@ -41,7 +41,7 @@ const Dialogs = (props) => {
 							onChange={fluxSymbolCycleInMessage}
 							ref={newMessageElement}
 							name="text"
-							value={props.dialogsPage.newMessageText}
+							value={props.newMessageText}
 						/>
 					</div>
 					<div className={c.button}>

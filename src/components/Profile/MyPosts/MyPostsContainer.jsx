@@ -1,24 +1,27 @@
 import React from "react";
 import { addPostActionCreator, fluxSymbolCycleInPostActionCreator } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import { connect } from "react-redux";
 
-const MyPostsContainer = (props) => {
-
-	let addPost = () => {
-		props.store.dispatch(addPostActionCreator());
+const mapStateToProps = (state) => {
+	return {
+		profilePostsData: state.profilePage.profilePostsData,
+		newPostText: state.profilePage.newPostText,
 	}
-
-	let fluxSymbolCycleInPost = (text) => {
-		props.store.dispatch(fluxSymbolCycleInPostActionCreator(text))
-	}
-
-	return (
-		<MyPosts
-			addPost={addPost}
-			fluxSymbolCycleInPostActionCreator={fluxSymbolCycleInPost}
-			profilePage={props.store.getState().profilePage} />
-	)
 }
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addPostActionCreator: () => {
+			dispatch(addPostActionCreator());
+		},
+		fluxSymbolCycleInPostActionCreator: (text) => {
+			dispatch(fluxSymbolCycleInPostActionCreator(text))
+		}
+	}
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 
 export default MyPostsContainer;

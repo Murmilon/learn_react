@@ -1,24 +1,29 @@
 import React from "react";
 import Dialogs from "./Dialogs";
 import { addMessageActionCreator, fluxSymbolCycleInMessageActionCreator } from "../../redux/dialogs-reducer";
+import { connect } from "react-redux";
 
-const DialogsContainer = (props) => {
-
-	let addMessage = () => {
-		props.store.dispatch(addMessageActionCreator())
+const mapStateToProps = (state) => {
+	return {
+		dialogsUsersData: state.dialogsPage.dialogsUsersData,
+		dialogsMessagesData: state.dialogsPage.dialogsMessagesData,
+		newMessageText: state.dialogsPage.newMessageText,
 	}
-
-	let fluxSymbolCycleInMessage = (text) => {
-		props.store.dispatch(fluxSymbolCycleInMessageActionCreator(text))
-	}
-
-	return (
-		<Dialogs
-			addMessageActionCreator={addMessage}
-			fluxSymbolCycleInMessageActionCreator={fluxSymbolCycleInMessage}
-			dialogsPage={props.store.getState().dialogsPage}
-		/>
-	)
 }
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addMessageActionCreator: () => {
+			dispatch(addMessageActionCreator())
+		},
+		fluxSymbolCycleInMessageActionCreator: (text) => {
+			dispatch(fluxSymbolCycleInMessageActionCreator(text))
+		}
+	}
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
+
 
 export default DialogsContainer;

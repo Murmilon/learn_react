@@ -10,7 +10,7 @@ const activeLink = () => {
 }
 
 const Navbar = (props) => {
-	let sidebarElement = props.state.sidebar.map((sidebar) => {
+	let sidebarElement = props.sidebar.map((sidebar) => {
 		return (
 			<Sidebar name={sidebar.name} id={sidebar.id} />
 		)

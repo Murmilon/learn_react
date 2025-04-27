@@ -3,7 +3,7 @@ import c from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-	let postsElements = props.profilePage.profilePostsData.map((post) => {
+	let postsElements = props.profilePostsData.map((post) => {
 		return (
 			<Post message={post.message} likesCount={post.likesCount} id={post.id} />
 		)
@@ -12,7 +12,7 @@ const MyPosts = (props) => {
 	let newPostElement = React.createRef();
 
 	let addPost = () => {
-		props.addPost()
+		props.addPostActionCreator()
 	}
 
 	let fluxSymbolCycleInPost = () => {
@@ -31,7 +31,7 @@ const MyPosts = (props) => {
 						onChange={fluxSymbolCycleInPost}
 						ref={newPostElement}
 						name="text"
-						value={props.profilePage.newPostText}
+						value={props.newPostText}
 					/>
 				</div>
 				<div className={c.button}>
