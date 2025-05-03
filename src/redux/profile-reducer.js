@@ -13,23 +13,28 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
 	switch (action.type) {
-		case ADD_POST:
+		case ADD_POST: {
+			let stateCopy = { ...state };
+			stateCopy.profilePostsData = [...state.profilePostsData];
+
 			let newPost = {
 				id: 3,
 				message: state.newPostText,
 				likesCount: 0,
 			}
 
-			state.profilePostsData.push(newPost);
-			state.newPostText = '';
-			break;
-		case FLUX_SYMBOL_CYCLE_IN_POST:
-			state.newPostText = action.newSymbol;
-			break;
+			stateCopy.profilePostsData.push(newPost);
+			stateCopy.newPostText = '';
+			return stateCopy;
+		}
+		case FLUX_SYMBOL_CYCLE_IN_POST: {
+			let stateCopy = { ...state };
+			stateCopy.newPostText = action.newSymbol;
+			return stateCopy;
+		}
 		default:
 			return state;
 	}
-	return state;
 }
 
 //*Функции, которые передаются в качестве параметра для функции dispatch

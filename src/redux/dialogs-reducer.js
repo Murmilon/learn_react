@@ -23,22 +23,27 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
 
 	switch (action.type) {
-		case ADD_MESSAGE:
+		case ADD_MESSAGE: {
+			let stateCopy = { ...state };
+			stateCopy.dialogsMessagesData = [...state.dialogsMessagesData];
+
 			let newMessage = {
 				id: 4,
 				message: state.newMessageText,
 			}
 
-			state.dialogsMessagesData.push(newMessage);
-			state.newMessageText = '';
-			break;
-		case FLUX_SYMBOL_CYCLE_IN_MESSAGE:
-			state.newMessageText = action.newSymbol;
-			break;
+			stateCopy.dialogsMessagesData.push(newMessage);
+			stateCopy.newMessageText = '';
+			return stateCopy;
+		}
+		case FLUX_SYMBOL_CYCLE_IN_MESSAGE: {
+			let stateCopy = { ...state };
+			stateCopy.newMessageText = action.newSymbol;
+			return stateCopy;
+		}
 		default:
 			return state;
 	}
-	return state;
 }
 
 //*Функции, которые передаются в качестве параметра для функции dispatch
