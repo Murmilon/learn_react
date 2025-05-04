@@ -13,25 +13,27 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
 
 	switch (action.type) {
-		case ADD_POST: {
-			let stateCopy = { ...state };
-			stateCopy.profilePostsData = [...state.profilePostsData];
 
+		case ADD_POST: {
 			let newPost = {
 				id: 3,
 				message: state.newPostText,
 				likesCount: 0,
 			}
+			return {
+				...state,
+				newPostText: '',
+				profilePostsData: [...state.profilePostsData, newPost],
+			};
+		}
 
-			stateCopy.profilePostsData.push(newPost);
-			stateCopy.newPostText = '';
-			return stateCopy;
-		}
 		case FLUX_SYMBOL_CYCLE_IN_POST: {
-			let stateCopy = { ...state };
-			stateCopy.newPostText = action.newSymbol;
-			return stateCopy;
+			return {
+				...state,
+				newPostText: action.newSymbol,
+			};
 		}
+
 		default:
 			return state;
 	}

@@ -23,24 +23,24 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
 
 	switch (action.type) {
-		case ADD_MESSAGE: {
-			let stateCopy = { ...state };
-			stateCopy.dialogsMessagesData = [...state.dialogsMessagesData];
 
+		case ADD_MESSAGE:
 			let newMessage = {
 				id: 4,
 				message: state.newMessageText,
 			}
+			return {
+				...state,
+				newMessageText: '',
+				dialogsMessagesData: [...state.dialogsMessagesData, newMessage],
+			}
 
-			stateCopy.dialogsMessagesData.push(newMessage);
-			stateCopy.newMessageText = '';
-			return stateCopy;
-		}
-		case FLUX_SYMBOL_CYCLE_IN_MESSAGE: {
-			let stateCopy = { ...state };
-			stateCopy.newMessageText = action.newSymbol;
-			return stateCopy;
-		}
+		case FLUX_SYMBOL_CYCLE_IN_MESSAGE:
+			return {
+				...state,
+				newMessageText: action.newSymbol,
+			}
+
 		default:
 			return state;
 	}

@@ -9,7 +9,7 @@ import Settings from './components/Settings/Settings';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 
 
-function App(props) {
+function App() {
 	return (
 		<BrowserRouter>
 			<div className='container'>
